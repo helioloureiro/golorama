@@ -3,9 +3,9 @@ package golorama
 import "fmt"
 
 const (
-	CSI = `\033[`
-	OSC = `\033]`
-	BEL = `\a`
+	CSI = "\033["
+	OSC = "\033["
+	BEL = '\a'
 )
 
 const (
@@ -38,6 +38,15 @@ const (
 	LIGHTWHITE_EX
 )
 
+func GetCSI(color int) string {
+	colorTAG := fmt.Sprintf("%s%dm", CSI, color)
+	return colorTAG
+}
+
+func Reset() string {
+	return "\033[0m"
+}
+
 func PrintColorln(color int, i ...interface{}) {
-	fmt.Println(CSI, color, i...)
+	fmt.Println(GetCSI(color), i, Reset())
 }
