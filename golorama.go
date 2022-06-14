@@ -38,15 +38,18 @@ const (
 	LIGHTWHITE_EX
 )
 
+// GetCSI: to get the color as termio format
 func GetCSI(color int) string {
 	colorTAG := fmt.Sprintf("%s%dm", CSI, color)
 	return colorTAG
 }
 
+// Reset: set color off to the terminal
 func Reset() string {
 	return "\033[0m"
 }
 
+// PrintColorln: a direct call to print lines in colorful way
 func PrintColorln(color int, i ...interface{}) {
 	fmt.Println(GetCSI(color), i, Reset())
 }
