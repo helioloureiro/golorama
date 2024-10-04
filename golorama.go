@@ -50,8 +50,11 @@ const (
 	LIGHTWHITE
 )
 
+// Color assignment
+type Color int
+
 // GetCSI: to get the color as termio format
-func GetCSI(color int) string {
+func GetCSI(color Color) string {
 	return fmt.Sprintf("%s%dm", CSI, color)
 }
 
@@ -61,6 +64,6 @@ func Reset() string {
 }
 
 // PrintColorln: a direct call to print lines in colorful way
-func PrintColorln(color int, i ...interface{}) {
+func PrintColorln(color Color, i ...interface{}) {
 	fmt.Println(GetCSI(color), i, Reset())
 }
